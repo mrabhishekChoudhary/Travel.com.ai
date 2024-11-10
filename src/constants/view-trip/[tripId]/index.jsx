@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 
 function Viewtrip() {
   const { tripId } = useParams();
-  const [trip, setTrip]=useState([]);
+  const [trip, setTrip] = useState([]);
 
   useEffect(() => {
     if (tripId) {
@@ -18,7 +18,6 @@ function Viewtrip() {
   }, [tripId]);
 
   const getTripData = async () => {
-    // Use the tripId variable to reference the document dynamically
     const docRef = doc(db, "AITrips", tripId);
     const docSnap = await getDoc(docRef);
 
@@ -31,14 +30,21 @@ function Viewtrip() {
   };
 
   return (
-    <div className='p-10 md: px-20 lg:px-44 xl:px-56'>
-          {/* Information section */}
-          <InfoSection trip={trip}/>
-          {/* Recommended Hotels */}
-          <Hotels trip={trip}/>
-          {/* Itinerary section */}
-          <PlaceToVisit trip={trip}/>
-          
+    <div className="p-5 sm:p-10 md:px-16 lg:px-32 xl:px-44">
+      {/* Information Section */}
+      <div className="mb-10">
+        <InfoSection trip={trip} />
+      </div>
+
+      {/* Recommended Hotels */}
+      <div className="mb-10">
+        <Hotels trip={trip} />
+      </div>
+
+      {/* Itinerary Section */}
+      <div className="mb-10">
+        <PlaceToVisit trip={trip} />
+      </div>
     </div>
   );
 }
